@@ -18,4 +18,4 @@ Para instalar as dependências do projeto rode o comando `pip install -r require
 
 ## Rodando a API
 
-Execute o comando `uvicorn main:app --reload`.
+Entre na pasta da API com `cd api` e inicie o servidor com o comando `uvicorn main:app --reload`. Você pode testar os endpoints no endereço http://localhost:8000/docs
