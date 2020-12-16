@@ -21,10 +21,10 @@ class SentAnalysis():
     def __init__(self):
         with open('models/vectorizer.pkl', 'rb') as file:
             self.vectorizer = pickle.load(file)
-        
+
         with open('models/model.pkl', 'rb') as file:
             self.model = pickle.load(file)
-        
+
         self.stop_words = set(stopwords.words('portuguese'))
         self.lemmatizer = WordNetLemmatizer()
 
@@ -35,7 +35,7 @@ class SentAnalysis():
         text = [self.lemmatizer.lemmatize(token, 'v') for token in text]
         text = [word for word in text if not word in self.stop_words]
         text = ' '.join(text)
-        
+
         return text
 
     def predict(self, text: str):
