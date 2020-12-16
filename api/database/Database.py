@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-url = 'mongodb+srv://ian_guimaraes:NVaTKD4ASJtZIszG@cluster0.pfbqd.mongodb.net/Cluster0?retryWrites=true&w=majority'
+url = ''
 
 class Database():
     def __init__(self):
