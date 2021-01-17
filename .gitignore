@@ -1,3 +1,10 @@
+# VSCode
+.vscode
+
+# Python
 .venv
 __pycache__
 *.pkl
+
+# Dados
+analyser/data/*.csv
