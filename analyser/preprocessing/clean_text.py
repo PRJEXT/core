@@ -6,10 +6,10 @@ lemmatizer = WordNetLemmatizer()
 stop_words = set(stopwords.words('english')) # alterar para português
 
 
-def apply_clean_text(data_frame, text_column):
+def apply_clean_text(data_frame, text_column, preproc_column_name):
     '''Aplica o algoritmo de limpeza de textos em uma coluna do data frame.'''
     # Usa a lambda function para aplicar a função clean_text em cada linha do data frame
-    data_frame['text_preprocessed'] = data_frame[text_column].apply(lambda text: clean_text(text))
+    data_frame[preproc_column_name] = data_frame[text_column].apply(lambda text: clean_text(text))
 
 
 def clean_text(text):
