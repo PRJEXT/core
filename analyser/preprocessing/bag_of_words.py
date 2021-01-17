@@ -10,6 +10,6 @@ def generate_bag_of_words(data_frame, preprocessed_column):
     vectorizer = TfidfVectorizer(stop_words=stop_words)
     
     # Aplica a vetorização (tokenização + contagem de ocorrências) retornando a matriz de features TF-IDF
-    features = vectorizer.fit_transform(data_frame[preprocessed_column])
+    vectorized_reviews = vectorizer.fit_transform(data_frame[preprocessed_column])
 
-    return features
+    return vectorized_reviews
