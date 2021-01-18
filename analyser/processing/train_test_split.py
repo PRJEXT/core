@@ -1,11 +1,10 @@
 from sklearn.model_selection import train_test_split
-from analyser.preprocessing.bag_of_words import generate_bag_of_words
 
 
-def split(data_frame, sentiment_column, preprocessed_column):
+def split(data_frame, sentiment_column, bag_of_words):
     '''Realiza a separação dos dados de treino e de teste a partir das colunas de reviews e sentimentos do data frame.'''
     # X representa o que será utilizado para a predição (reviews pré-processadas/variável independente)
-    X = generate_bag_of_words(data_frame, preprocessed_column)
+    X = bag_of_words
     # y representa o que queremos prever (sentimentos/variável dependente)
     y = data_frame[sentiment_column]
 
