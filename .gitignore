@@ -7,4 +7,4 @@ __pycache__
 *.pkl
 
 # Dados
-analyser/data/*.csv
+*.csv
