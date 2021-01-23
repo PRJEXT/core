@@ -16,6 +16,8 @@ Após o venv ser criado, será necessário ativá-lo com o comando `source .venv
 
 Para instalar as dependências do projeto rode o comando `pip install -r requirements.txt` com o venv ativo.
 
+As configurações com informações sensíveis ou globais devem ser feitas através do arquivo .env, que não deve ser compartilhado publicamente. Para ativá-lo renomeie o arquivo .env-example para apenas .env e insira os valores necessários.
+
 ## Rodando a API
 
 Entre na pasta da API com `cd api` e inicie o servidor com o comando `uvicorn main:app --reload`. Você pode testar os endpoints no endereço http://localhost:8000/docs
@@ -32,8 +34,8 @@ As funções disponíveis são as seguintes, considerando a ordem em que devem s
 2. **label_to_number:** converte uma coluna do data frame contendo a classificação "positivo" e "negativo" para 1 e -1, respectivamente.
 3. **apply_clean_text:** aplica o algoritmo de limpeza dos dados na coluna contendo as avaliações em texto.
 4. **save_data:** salva o data frame em um arquivo .csv dentro da pasta "data".
-5. **generate_bag_of_words:** gera uma matriz de vetores de palavras e suas respectivas contagens (bag of words) da coluna de avaliação.
-6. **split:** separa os dados de treino e teste para ser utilizada no modelo.
+5. **generate_bag_of_words:** gera uma matriz de vetores de palavras e suas respectivas contagens (bag of words) da coluna de avaliação e também retorna a instância do vetorizador.
+6. **split_data:** separa os dados de treino e teste para ser utilizada no modelo.
 7. **train_model:** realiza o treinamento do modelo utilizando o algoritmo de SVC ou Naive Bayes.
 8. **test_model:** testa o modelo utilizando os dados de teste e retorna um array com as predições.
 9. **evaluate_model:** avalia o desempenho do modelo utilizando a métrica F1 score, sendo a média harmônica entre precisão e recall.
@@ -44,7 +46,7 @@ Para utilizar os módulos, primeiramente faça a importação para o contexto do
 ```python
 from manage_data import import_data, save_data
 from preprocessing import label_to_number, apply_clean_text, generate_bag_of_words
-from processing import split, train_model, test_model
+from processing import split_data, train_model, test_model
 from evaluation import evaluate_model
 from serialize import serialize_vectorizer, serialize_model
 ```
