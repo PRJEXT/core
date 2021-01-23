@@ -1,7 +1,9 @@
+from os import getenv
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-stop_words = set(stopwords.words('english')) # alterar para português
+LANGUAGE = getenv('STOP_WORDS_LANGUAGE')
+stop_words = set(stopwords.words(LANGUAGE))
 
 
 def generate_bag_of_words(data_frame, preprocessed_column):
@@ -12,4 +14,4 @@ def generate_bag_of_words(data_frame, preprocessed_column):
     # Aplica a vetorização (tokenização + contagem de ocorrências) retornando a matriz de features TF-IDF
     vectorized_reviews = vectorizer.fit_transform(data_frame[preprocessed_column])
 
-    return vectorized_reviews
+    return vectorized_reviews, vectorizer

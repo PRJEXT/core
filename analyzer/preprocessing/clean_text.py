@@ -1,9 +1,11 @@
 import re
+from os import getenv
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
 
 lemmatizer = WordNetLemmatizer()
-stop_words = set(stopwords.words('english')) # alterar para português
+LANGUAGE = getenv('STOP_WORDS_LANGUAGE')
+stop_words = set(stopwords.words(LANGUAGE))
 
 
 def apply_clean_text(data_frame, text_column, preproc_column_name):
