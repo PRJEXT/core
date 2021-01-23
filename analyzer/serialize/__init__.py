@@ -1,2 +1,2 @@
-from .serialize_vectorizer
+from .serialize_vectorizer import serialize_vectorizer
 from .serialize_model import serialize_model
