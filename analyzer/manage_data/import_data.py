@@ -1,4 +1,9 @@
+from os import getenv
+from dotenv import load_dotenv
 import pandas as pd
+
+load_dotenv()
+SEED = int(getenv('SEED'))
 
 
 def import_data(file_name, sample='full'):
@@ -10,5 +15,4 @@ def import_data(file_name, sample='full'):
     if sample == 'full':
         return data_frame
     else:
-        seed = 1234
-        return data_frame.sample(sample, random_state=seed)
+        return data_frame.sample(sample, random_state=SEED)
