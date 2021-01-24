@@ -1,5 +1,6 @@
 import pickle
 import re
+from os import getenv
 
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -10,7 +11,7 @@ from nltk import download
 # download('wordnet')
 
 
-class SentAnalysis():
+class SentAnalysis:
     '''Classe principal do analisador de sentimentos.
     Possui como atributos os modelos de vetorizador e Support Vector Classifier (SVC),
     as stopwords e o lematizador (reduz as palavras aos seus radicais).
@@ -25,7 +26,7 @@ class SentAnalysis():
         with open('models/model.pkl', 'rb') as file:
             self.model = pickle.load(file)
 
-        self.stop_words = set(stopwords.words('portuguese'))
+        self.stop_words = set(stopwords.words(getenv('LANGUAGE')))
         self.lemmatizer = WordNetLemmatizer()
 
     def clean_text(self, text):

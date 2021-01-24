@@ -1,9 +1,8 @@
+from os import getenv
 from pymongo import MongoClient
 
-url = ''
 
-class Database():
+class Database:
     def __init__(self):
-        self.client = MongoClient(url)
+        self.client = MongoClient(getenv('MONGO_URI'))
         self.db = self.client["Cluster0"]
-

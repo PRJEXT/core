@@ -1,12 +1,14 @@
 import redis
 import json
+from os import getenv
 
 from service.SentAnalysis import SentAnalysis
 from service.ReviewService import ReviewService
 
-class ListenerService():
+
+class ListenerService:
     def __init__(self):
-        self.CHANNEL_NAME = "analisys"
+        self.CHANNEL_NAME = getenv('REDIS_CHANNEL')
         # self.svc = SentAnalysis()
         self.redis = redis.Redis()
         self.reviewService = ReviewService()
@@ -24,4 +26,3 @@ class ListenerService():
                 print(id, review)
                 self.reviewService.update(id, review)
                 print("Is the right channel", message["data"])
-
