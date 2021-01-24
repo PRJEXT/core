@@ -26,7 +26,7 @@ class SentAnalysis:
         with open('models/model.pkl', 'rb') as file:
             self.model = pickle.load(file)
 
-        self.stop_words = set(stopwords.words(getenv('LANGUAGE')))
+        self.stop_words = set(stopwords.words(getenv('STOP_WORDS_LANGUAGE')))
         self.lemmatizer = WordNetLemmatizer()
 
     def clean_text(self, text):
@@ -44,7 +44,7 @@ class SentAnalysis:
         X = self.vectorizer.transform([text])
         result = self.model.predict(X)
 
-        if result[0] == 0:
-            return 'negative'
+        if result[0] == -1:
+            return 'negativo'
         else:
-            return 'positive'
+            return 'positivo'

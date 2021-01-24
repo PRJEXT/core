@@ -9,7 +9,7 @@ from database.Database import Database
 class ListenerService:
     def __init__(self):
         self.CHANNEL_NAME = getenv('REDIS_CHANNEL')
-        # self.svc = SentAnalysis()
+        self.model = SentAnalysis()
         self.redis = redis.Redis()
         self.database = Database()
 
@@ -21,8 +21,14 @@ class ListenerService:
         for message in self.pubsub.listen():
             if message["type"]  == 'pmessage':
                 data = json.loads(message["data"])
+                print("Is the right channel", data)
+                
                 id = data["id"]
                 review = data["review"]
-                print(id, review)
-                self.database.update(id, review)
-                print("Is the right channel", message["data"])
+                print(f'Id: {id}', f'Review: {review}')
+                
+                sentiment = self.model.predict(review)
+                print(f'Predict: {sentiment}')
+
+                self.database.update(id, sentiment)
+                print('Database updated')
