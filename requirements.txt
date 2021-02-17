@@ -1,9 +1,7 @@
-fastapi
-uvicorn
-pydantic
 nltk
 sklearn
 pandas
+python-dotenv
 pymogo
 redis
 dnspython
