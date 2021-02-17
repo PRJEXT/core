@@ -2,3 +2,6 @@ nltk
 sklearn
 pandas
 python-dotenv
+pymogo
+redis
+dnspython

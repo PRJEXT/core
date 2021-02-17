@@ -1,5 +1,6 @@
 import pickle
 import re
+from os import getenv
 
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
@@ -10,7 +11,7 @@ from nltk import download
 # download('wordnet')
 
 
-class SentAnalysis():
+class SentAnalysis:
     '''Classe principal do analisador de sentimentos.
     Possui como atributos os modelos de vetorizador e Support Vector Classifier (SVC),
     as stopwords e o lematizador (reduz as palavras aos seus radicais).
@@ -21,11 +22,11 @@ class SentAnalysis():
     def __init__(self):
         with open('models/vectorizer.pkl', 'rb') as file:
             self.vectorizer = pickle.load(file)
-        
+
         with open('models/model.pkl', 'rb') as file:
             self.model = pickle.load(file)
-        
-        self.stop_words = set(stopwords.words('portuguese'))
+
+        self.stop_words = set(stopwords.words(getenv('STOP_WORDS_LANGUAGE')))
         self.lemmatizer = WordNetLemmatizer()
 
     def clean_text(self, text):
@@ -35,7 +36,7 @@ class SentAnalysis():
         text = [self.lemmatizer.lemmatize(token, 'v') for token in text]
         text = [word for word in text if not word in self.stop_words]
         text = ' '.join(text)
-        
+
         return text
 
     def predict(self, text: str):
@@ -43,7 +44,7 @@ class SentAnalysis():
         X = self.vectorizer.transform([text])
         result = self.model.predict(X)
 
-        if result[0] == 0:
-            return 'negative'
+        if result[0] == -1:
+            return 'negativo'
         else:
-            return 'positive'
+            return 'positivo'
