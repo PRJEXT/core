@@ -4,3 +4,6 @@ pydantic
 nltk
 sklearn
 pandas
+pymogo
+redis
+dnspython
